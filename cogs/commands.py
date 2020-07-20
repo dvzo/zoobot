@@ -9,10 +9,7 @@ class Commands(commands.Cog):
     def __init__(self, client):
         self.client = client
 
-    # commands
-    @commands.command()
-    async def ping(self, ctx):
-        await ctx.send('pong')
+    # list of commands
 
     # 8ball
     @commands.command(aliases=['8ball'])
@@ -40,6 +37,14 @@ class Commands(commands.Cog):
                      ]
 
         await ctx.send(f'```the 8ball says... \n\n{random.choice(responses)}```')
+
+        # clear
+
+
+        # ping
+        @commands.command()
+        async def ping(self, ctx):
+            await ctx.send('pong')
 
 
 # function to connect this to the bot
