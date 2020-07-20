@@ -12,7 +12,7 @@ class Events(commands.Cog):
     # events
     @commands.Cog.listener()
     async def on_ready(self):
-        print('commands.py has been loaded.')
+        print('listener test.')
 
 
 # function to connect this to the bot
