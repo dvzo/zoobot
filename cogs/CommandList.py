@@ -45,10 +45,24 @@ class CommandList(commands.Cog):
             await ctx.send(f':monkaHmm:\n```please enter a yes or no question```')
 
     # oops
-    # a clear command that will remove the users' last sent message
+    # deletes last message of the user who called the oops command
     @commands.command()
-    async def oops(self, ctx, amount=1):
-        await ctx.channel.purge(limit=amount)
+    async def oops(self, ctx):
+
+        # get the author of the user who ran the oops command
+        oops_call = await ctx.channel.history(limit=1).get()
+        oops_call_author = oops_call.author
+
+        # always delete the oops command
+        await ctx.channel.purge(limit=1)
+
+        # grab the current message author after the oops command was deleted
+        current_message = await ctx.channel.history(limit=1).get()
+        current_message_author = current_message.author
+
+        # if the user who called the oops command is the same as the most recent message, delete it
+        if current_message_author == oops_call_author:
+            await ctx.channel.purge(limit=1)
 
     # ping
     @commands.command()
