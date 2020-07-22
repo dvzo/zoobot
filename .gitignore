@@ -1,4 +1,5 @@
 # system files
-__*
-*.py
-*.txt
+/__*
+/*.py
+/*.txt
+/cogs/__*
