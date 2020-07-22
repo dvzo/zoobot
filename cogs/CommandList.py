@@ -1,7 +1,7 @@
 import discord
 import random
 
-from discord import channel, client, emoji
+from discord import channel, client
 from discord.ext import commands
 
 
@@ -71,6 +71,19 @@ class CommandList(commands.Cog):
     @commands.cooldown(rate=1, per=5)
     async def ping(self, ctx):
         await ctx.send('pong')
+
+    # help command
+    @commands.command()
+    @commands.cooldown(rate=1, per=5)
+    async def help(self, ctx):
+        help_msg = ('```.~:*help menu*:~.\n' +
+                    'use commands with . prefix!\n\n' +
+                    '.8ball: ask the 8ball a yes or no question\n\n' +
+                    '.oops: if the last sent message was by you, delete it\n\n' +
+                    '.ping: pong!\n\n' +
+                    '.help: show this menu```')
+
+        await ctx.send(help_msg)
 
 
 # setups this cog

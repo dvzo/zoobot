@@ -2,8 +2,6 @@ import discord
 from discord import user
 from discord.ext import commands
 
-from discord.utils import get
-
 
 # list of events
 class EventList(commands.Cog):
