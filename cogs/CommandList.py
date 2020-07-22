@@ -36,8 +36,13 @@ class CommandList(commands.Cog):
     # grabs a random answer from responses
     @commands.command(aliases=['8ball'])
     async def _8ball(self, ctx, *, question):
-
         await ctx.send(f'```the 8ball says... \n\n{random.choice(self.responses)}```')
+
+    # 8ball error handler
+    @_8ball.error
+    async def clear_8ball_error(self, ctx, error):
+        if isinstance(error, commands.MissingRequiredArgument):
+            await ctx.send(f':monkaHmm:\n```please enter a yes or no question```')
 
     # oops
     # a clear command that will remove the users' last sent message
