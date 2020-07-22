@@ -1,5 +1,7 @@
 import discord
 import random
+
+from discord import channel, client
 from discord.ext import commands
 
 
@@ -38,13 +40,16 @@ class Commands(commands.Cog):
 
         await ctx.send(f'```the 8ball says... \n\n{random.choice(responses)}```')
 
-        # clear
+    # oops
+    # a clear command that will remove the users' last sent message
+    @commands.command()
+    async def oops(self, ctx, amount=1):
+        await ctx.channel.purge(limit=amount)
 
-
-        # ping
-        @commands.command()
-        async def ping(self, ctx):
-            await ctx.send('pong')
+    # ping
+    @commands.command()
+    async def ping(self, ctx):
+        await ctx.send('pong')
 
 
 # function to connect this to the bot
