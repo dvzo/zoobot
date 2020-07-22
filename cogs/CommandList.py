@@ -1,7 +1,7 @@
 import discord
 import random
 
-from discord import channel, client
+from discord import channel, client, emoji
 from discord.ext import commands
 
 
@@ -35,18 +35,20 @@ class CommandList(commands.Cog):
     # 8ball
     # grabs a random answer from responses
     @commands.command(aliases=['8ball'])
+    @commands.cooldown(rate=1, per=5)
     async def _8ball(self, ctx, *, question):
         await ctx.send(f'```the 8ball says... \n\n{random.choice(self.responses)}```')
 
-    # 8ball error handler
+    # 8ball missing requirements error handler
     @_8ball.error
-    async def clear_8ball_error(self, ctx, error):
+    async def _8ball_missing_argument_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
             await ctx.send(f':monkaHmm:\n```please enter a yes or no question```')
 
     # oops
     # deletes last message of the user who called the oops command
     @commands.command()
+    @commands.cooldown(rate=1, per=5)
     async def oops(self, ctx):
 
         # get the author of the user who ran the oops command
@@ -66,6 +68,7 @@ class CommandList(commands.Cog):
 
     # ping
     @commands.command()
+    @commands.cooldown(rate=1, per=5)
     async def ping(self, ctx):
         await ctx.send('pong')
 
