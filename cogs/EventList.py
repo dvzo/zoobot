@@ -19,6 +19,8 @@ class EventList(commands.Cog):
                   '<:Gasp:557506419277168640>',
                   '<:FeelsBadMan:539400621334200320>',
                   '<:monkaS:556704950348939265>',
+                  '<:monkaHmm:563891606546022400>',
+                  '<:FeelsBirthdayMan: 691778442416619551>'
                   ]
 
     def __init__(self, client):
@@ -32,7 +34,7 @@ class EventList(commands.Cog):
         if isinstance(error, commands.CommandOnCooldown):
             cd_seconds = '%.2f' % error.retry_after
             await ctx.send(
-                f'{self.emote_kekw}\n```this command is on cooldown for {cd_seconds} seconds```')
+                f'<:KEKW:653684411069366288>\n```this command is on cooldown for {cd_seconds} seconds```')
 
     # on_message listener for emojis
     @commands.Cog.listener()

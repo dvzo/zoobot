@@ -29,6 +29,14 @@ class CommandList(commands.Cog):
                  "Very doubtful."
                  ]
 
+    ping_list = ['pong! :ping_pong: ',
+                 'zoo likes lisa! :heart_eyes:',
+                 'kpop is pretty nice! :smile:',
+                 'pizza sounds good right now... :pizza:',
+                 'UYY!',
+                 'my birthday is on 07/22/2020! <:FeelsBirthdayMan:691778442416619551>',
+                 ]
+
     def __init__(self, client):
         self.client = client
 
@@ -43,7 +51,7 @@ class CommandList(commands.Cog):
     @_8ball.error
     async def _8ball_missing_argument_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send(f':monkaHmm:\n```please enter a yes or no question```')
+            await ctx.send(f'<:monkaHmm:563891606546022400>\n```gimme a yes or no question```')
 
     # oops
     # deletes last message of the user who called the oops command
@@ -70,7 +78,7 @@ class CommandList(commands.Cog):
     @commands.command()
     @commands.cooldown(rate=1, per=5)
     async def ping(self, ctx):
-        await ctx.send('pong')
+        await ctx.send(random.choice(self.ping_list))
 
     # help command
     @commands.command()
