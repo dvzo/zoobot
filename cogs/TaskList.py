@@ -6,62 +6,16 @@ from discord.ext import commands, tasks
 
 # configure background tasks
 class TaskList(commands.Cog):
-    # status for "Playing ..."
-    game_list = ['bot games',
-                 'with stream settings',
-                 'with discord settings',
-                 'calculators',
-                 'programming games',
-                 'algorithms',
-                 'study games',
-                 'ghost of sushi',
-                 'need for speed',
-                 'valorant',
-                 'minesweeper',
-                 'tetris',
-                 'ms paint'
-                 ]
-
-    # status for "Listening to ..."
-    music_list = ['kendrick lamar',
-                  'blackpink',
-                  'kanye west',
-                  'juice wrld',
-                  'charli xcx',
-                  'playboi carti',
-                  'twice',
-                  'bts',
-                  'james blake',
-                  'red velvet',
-                  'jpegmafia',
-                  'death grips',
-                  '21 savage',
-                  'rosalia',
-                  'travis scott',
-                  'megan thee stallion',
-                  'billie eilish'
-                  ]
-
-    movie_list = ['pulp fiction',
-                  'alien',
-                  'youtube videos',
-                  'lisa <3',
-                  'the departed',
-                  'inglourious basterds',
-                  'kill bill',
-                  'reservoir dogs',
-                  'kung fu hustle',
-                  'silence of the lambs',
-                  'the shining',
-                  'twitch',
-                  ]
+    game_list = []  # status for 'Playing ...'
+    music_list = []  # status for 'Listening to ...'
+    movie_list = []  # status for 'Watching ...'
 
     def __init__(self, client):
         self.client = client
 
     # change_status
     # changes status every 5 minutes to a random selection the 3 lists above
-    @tasks.loop(minutes=5)
+    @tasks.loop(seconds=10)
     async def change_status(self):
         rand_game = random.choice(self.game_list)
         rand_music = random.choice(self.music_list)
@@ -80,6 +34,19 @@ class TaskList(commands.Cog):
     # on_ready
     @commands.Cog.listener()
     async def on_ready(self):
+
+        print(f'task list on ready is called')
+
+        # load text files on ready
+        game_list_file = open("game_list_file.txt", "r")
+        self.game_list = game_list_file.readlines()
+
+        music_list_file = open("music_list_file.txt", "r")
+        self.music_list = music_list_file.readlines()
+
+        movie_list_file = open("movie_list_file.txt", "r")
+        self.movie_list = movie_list_file.readlines()
+
         # starts the change_status loop
         self.change_status.start()
 
