@@ -15,7 +15,7 @@ class TaskList(commands.Cog):
 
     # change_status
     # changes status every 5 minutes to a random selection the 3 lists above
-    @tasks.loop(seconds=10)
+    @tasks.loop(minutes=5)
     async def change_status(self):
         rand_game = random.choice(self.game_list)
         rand_music = random.choice(self.music_list)
