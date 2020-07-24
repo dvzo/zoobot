@@ -6,9 +6,24 @@ from discord.ext import commands, tasks
 
 # configure background tasks
 class TaskList(commands.Cog):
+<<<<<<< HEAD
     game_list = []  # status for 'Playing ...'
     music_list = []  # status for 'Listening to ...'
     movie_list = []  # status for 'Watching ...'
+=======
+    # read lists from files
+    # status for "Playing ..."
+    game_list_file = open("game_list_file.txt", "r")
+    game_list = game_list_file.readlines()
+
+    # status for "Listening to ..."
+    music_list_file = open("music_list_file.txt", "r")
+    music_list = music_list_file
+
+    # status for "Watching ..."
+    movie_list_file = open("movie_list_file", "r")
+    movie_list = music_list_file
+>>>>>>> bf6d374940299c15194c0a6229c9c344848bd17c
 
     def __init__(self, client):
         self.client = client
