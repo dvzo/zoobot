@@ -6,55 +6,18 @@ from discord.ext import commands, tasks
 
 # configure background tasks
 class TaskList(commands.Cog):
+    # read lists from files
     # status for "Playing ..."
-    game_list = ['bot games',
-                 'with stream settings',
-                 'with discord settings',
-                 'calculators',
-                 'programming games',
-                 'algorithms',
-                 'study games',
-                 'ghost of sushi',
-                 'need for speed',
-                 'valorant',
-                 'minesweeper',
-                 'tetris',
-                 'ms paint'
-                 ]
+    game_list_file = open("game_list_file.txt", "r")
+    game_list = game_list_file.readlines()
 
     # status for "Listening to ..."
-    music_list = ['kendrick lamar',
-                  'blackpink',
-                  'kanye west',
-                  'juice wrld',
-                  'charli xcx',
-                  'playboi carti',
-                  'twice',
-                  'bts',
-                  'james blake',
-                  'red velvet',
-                  'jpegmafia',
-                  'death grips',
-                  '21 savage',
-                  'rosalia',
-                  'travis scott',
-                  'megan thee stallion',
-                  'billie eilish'
-                  ]
+    music_list_file = open("music_list_file.txt", "r")
+    music_list = music_list_file
 
-    movie_list = ['pulp fiction',
-                  'alien',
-                  'youtube videos',
-                  'lisa <3',
-                  'the departed',
-                  'inglourious basterds',
-                  'kill bill',
-                  'reservoir dogs',
-                  'kung fu hustle',
-                  'silence of the lambs',
-                  'the shining',
-                  'twitch',
-                  ]
+    # status for "Watching ..."
+    movie_list_file = open("movie_list_file", "r")
+    movie_list = music_list_file
 
     def __init__(self, client):
         self.client = client
